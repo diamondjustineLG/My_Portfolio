@@ -1,6 +1,5 @@
 @import "config";
 @import "menu";
-@import "mobile";
 * {
     box-sizing: border-box;
 }
@@ -8,24 +7,23 @@
 body {
     @include background;
     background: $primary-color;
-    color: #fff;
+    color: set-text-color($primary-color);
     height: 100%;
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
 }
 
-// headings
+// Headings
 h1,
 h2,
 h3 {
     margin: 0;
-    font-weight: 600;
+    font-weight: 400;
     &.lg-heading {
-        font-size: 4rem;
+        font-size: 6rem;
     }
     &.sm-heading {
-        font-size: 1.5rem;
         margin-bottom: 2rem;
         padding: 0.2rem 1rem;
         background: rgba(lighten($primary-color, 2), 0.5);
@@ -48,22 +46,163 @@ header {
 }
 
 main {
-    padding: 6rem;
-    height: 100%;
+    padding: 1rem;
+    //min-height: 100%;
+    min-height: calc(100vh - 60px);
     .icons {
         margin-top: 1rem;
         a {
             padding: 0.4rem;
+            @include easeOut;
             &:hover {
                 color: $secondary-color;
-                @include ease-out();
             }
         }
     }
     &#home {
         overflow: hidden;
         h1 {
-            margin-top: 10vh;
+            margin-top: 20vh;
         }
     }
 }
+
+.about-info {
+    grid-gap: 30px;
+    display: grid;
+    grid-template-areas: "bioimage bio bio" "job1 job2 job3";
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.bio-image {
+    position: relative;
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    @include easeOut;
+    &:hover {
+        border-bottom: $secondary-color 10px solid;
+    }
+}
+
+.Bio {
+    grid-area: bio;
+    font-size: 2rem;
+    &:hover {
+        border-bottom: $secondary-color 5px solid;
+    }
+}
+
+.job-1 {
+    grid-area: job1;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+    @include easeOut;
+    &:hover {
+        color: $secondary-color;
+        background: black;
+        border: $secondary-color 3px solid;
+    }
+}
+
+.job-2 {
+    grid-area: job2;
+    cursor: pointer;
+    @include easeOut;
+    &:hover {
+        color: $secondary-color;
+        border-bottom: whitesmoke 5px solid;
+        background: black;
+    }
+}
+
+.job-3 {
+    grid-area: job3;
+    cursor: pointer;
+    @include easeOut;
+    &:hover {
+        color: $secondary-color;
+        background: black;
+        border-bottom: whitesmoke 5px solid;
+    }
+}
+
+.job {
+    margin-left: 60px;
+    background: lighten($color: $primary-color, $amount: 5);
+    border-radius: 50%;
+    height: 300px;
+    padding: 1rem;
+}
+
+.Projects {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    img {
+        width: 100%;
+        border-radius: 7px;
+        border: whitesmoke 2px solid;
+        @include easeOut;
+        &:hover {
+            border-bottom: $secondary-color 5px solid;
+            opacity: 0.5;
+        }
+    }
+}
+
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1rem;
+    align-items: center;
+    div {
+        font-size: 1.5rem;
+        border: whitesmoke 1px solid;
+        border-radius: 7px;
+        padding: 1.5rem 2.5rem;
+        margin-bottom: 3rem;
+        @include easeOut;
+        &:hover {
+            background: lighten($color: $primary-color, $amount: 5);
+            color: whitesmoke;
+            padding: 2rem 1.5rem;
+        }
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 0px;
+    margin: 0.5rem auto;
+    border: whitesmoke 1px dashed;
+    border-radius: 0.7rem;
+    background: darken($color: $primary-color, $amount: 5);
+    &:hover {
+        background: lighten($color: $secondary-color, $amount: 5);
+        color: $primary-color;
+    }
+}
+
+.btn-light {
+    @extend .btn;
+}
+
+.btn-dark {
+    @extend .btn;
+}
+
+#main-footer {
+    text-align: center;
+    background: darken($color: $primary-color, $amount: 10);
+    padding: 0.5rem;
+    &:hover {
+        color: $secondary-color;
+    }
+}
+
+@import "mobile";
